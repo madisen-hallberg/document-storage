@@ -1,0 +1,25 @@
+{
+  "version": 1,
+  "serviceConfiguration": {
+    "apiName": "documentapi",
+    "serviceName": "AppSync",
+    "gqlSchemaPath": "/Users/madisen/Documents/GitHub/document-storage/amplify/backend/api/documentapi/schema.graphql",
+    "defaultAuthType": {
+      "mode": "AMAZON_COGNITO_USER_POOLS",
+      "cognitoUserPoolId": "authdocumentstoragee2a727a9"
+    },
+    "conflictResolution": {
+      "defaultResolutionStrategy": {
+        "type": "AUTOMERGE"
+      }
+    },
+    "additionalAuthTypes": [
+      {
+        "mode": "API_KEY",
+        "expirationTime": 365,
+        "apiKeyExpirationDate": "2023-02-10T08:24:25.782Z",
+        "keyDescription": "javascript"
+      }
+    ]
+  }
+}
