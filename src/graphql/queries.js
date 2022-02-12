@@ -16,6 +16,7 @@ export const getSchool = /* GraphQL */ `
           _deleted
           _lastChangedAt
           schoolUsersId
+          owner
         }
         nextToken
         startedAt
@@ -25,6 +26,7 @@ export const getSchool = /* GraphQL */ `
       _version
       _deleted
       _lastChangedAt
+      owner
     }
   }
 `;
@@ -47,6 +49,7 @@ export const listSchools = /* GraphQL */ `
         _version
         _deleted
         _lastChangedAt
+        owner
       }
       nextToken
       startedAt
@@ -78,6 +81,7 @@ export const syncSchools = /* GraphQL */ `
         _version
         _deleted
         _lastChangedAt
+        owner
       }
       nextToken
       startedAt
@@ -101,6 +105,7 @@ export const getUser = /* GraphQL */ `
         _version
         _deleted
         _lastChangedAt
+        owner
       }
       documents {
         items {
@@ -113,6 +118,7 @@ export const getUser = /* GraphQL */ `
           _deleted
           _lastChangedAt
           userDocumentsId
+          owner
         }
         nextToken
         startedAt
@@ -123,6 +129,7 @@ export const getUser = /* GraphQL */ `
       _deleted
       _lastChangedAt
       schoolUsersId
+      owner
     }
   }
 `;
@@ -144,6 +151,7 @@ export const listUsers = /* GraphQL */ `
           _version
           _deleted
           _lastChangedAt
+          owner
         }
         documents {
           nextToken
@@ -155,6 +163,7 @@ export const listUsers = /* GraphQL */ `
         _deleted
         _lastChangedAt
         schoolUsersId
+        owner
       }
       nextToken
       startedAt
@@ -185,6 +194,7 @@ export const syncUsers = /* GraphQL */ `
           _version
           _deleted
           _lastChangedAt
+          owner
         }
         documents {
           nextToken
@@ -196,6 +206,7 @@ export const syncUsers = /* GraphQL */ `
         _deleted
         _lastChangedAt
         schoolUsersId
+        owner
       }
       nextToken
       startedAt
@@ -217,6 +228,7 @@ export const getDocument = /* GraphQL */ `
           _version
           _deleted
           _lastChangedAt
+          owner
         }
         documents {
           nextToken
@@ -228,6 +240,7 @@ export const getDocument = /* GraphQL */ `
         _deleted
         _lastChangedAt
         schoolUsersId
+        owner
       }
       name
       filePath
@@ -237,6 +250,7 @@ export const getDocument = /* GraphQL */ `
       _deleted
       _lastChangedAt
       userDocumentsId
+      owner
     }
   }
 `;
@@ -258,6 +272,7 @@ export const listDocuments = /* GraphQL */ `
           _deleted
           _lastChangedAt
           schoolUsersId
+          owner
         }
         name
         filePath
@@ -267,6 +282,7 @@ export const listDocuments = /* GraphQL */ `
         _deleted
         _lastChangedAt
         userDocumentsId
+        owner
       }
       nextToken
       startedAt
@@ -297,6 +313,7 @@ export const syncDocuments = /* GraphQL */ `
           _deleted
           _lastChangedAt
           schoolUsersId
+          owner
         }
         name
         filePath
@@ -306,6 +323,7 @@ export const syncDocuments = /* GraphQL */ `
         _deleted
         _lastChangedAt
         userDocumentsId
+        owner
       }
       nextToken
       startedAt

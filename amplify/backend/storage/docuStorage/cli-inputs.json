@@ -1,0 +1,13 @@
+{
+  "resourceName": "docuStorage",
+  "policyUUID": "8475b9a7",
+  "bucketName": "docu-storage",
+  "storageAccess": "auth",
+  "guestAccess": [],
+  "authAccess": [
+    "CREATE_AND_UPDATE",
+    "READ"
+  ],
+  "triggerFunction": "NONE",
+  "groupAccess": {}
+}

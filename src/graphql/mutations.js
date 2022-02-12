@@ -19,6 +19,7 @@ export const createSchool = /* GraphQL */ `
           _deleted
           _lastChangedAt
           schoolUsersId
+          owner
         }
         nextToken
         startedAt
@@ -28,6 +29,7 @@ export const createSchool = /* GraphQL */ `
       _version
       _deleted
       _lastChangedAt
+      owner
     }
   }
 `;
@@ -49,6 +51,7 @@ export const updateSchool = /* GraphQL */ `
           _deleted
           _lastChangedAt
           schoolUsersId
+          owner
         }
         nextToken
         startedAt
@@ -58,6 +61,7 @@ export const updateSchool = /* GraphQL */ `
       _version
       _deleted
       _lastChangedAt
+      owner
     }
   }
 `;
@@ -79,6 +83,7 @@ export const deleteSchool = /* GraphQL */ `
           _deleted
           _lastChangedAt
           schoolUsersId
+          owner
         }
         nextToken
         startedAt
@@ -88,6 +93,7 @@ export const deleteSchool = /* GraphQL */ `
       _version
       _deleted
       _lastChangedAt
+      owner
     }
   }
 `;
@@ -111,6 +117,7 @@ export const createUser = /* GraphQL */ `
         _version
         _deleted
         _lastChangedAt
+        owner
       }
       documents {
         items {
@@ -123,6 +130,7 @@ export const createUser = /* GraphQL */ `
           _deleted
           _lastChangedAt
           userDocumentsId
+          owner
         }
         nextToken
         startedAt
@@ -133,6 +141,7 @@ export const createUser = /* GraphQL */ `
       _deleted
       _lastChangedAt
       schoolUsersId
+      owner
     }
   }
 `;
@@ -156,6 +165,7 @@ export const updateUser = /* GraphQL */ `
         _version
         _deleted
         _lastChangedAt
+        owner
       }
       documents {
         items {
@@ -168,6 +178,7 @@ export const updateUser = /* GraphQL */ `
           _deleted
           _lastChangedAt
           userDocumentsId
+          owner
         }
         nextToken
         startedAt
@@ -178,6 +189,7 @@ export const updateUser = /* GraphQL */ `
       _deleted
       _lastChangedAt
       schoolUsersId
+      owner
     }
   }
 `;
@@ -201,6 +213,7 @@ export const deleteUser = /* GraphQL */ `
         _version
         _deleted
         _lastChangedAt
+        owner
       }
       documents {
         items {
@@ -213,6 +226,7 @@ export const deleteUser = /* GraphQL */ `
           _deleted
           _lastChangedAt
           userDocumentsId
+          owner
         }
         nextToken
         startedAt
@@ -223,6 +237,7 @@ export const deleteUser = /* GraphQL */ `
       _deleted
       _lastChangedAt
       schoolUsersId
+      owner
     }
   }
 `;
@@ -244,6 +259,7 @@ export const createDocument = /* GraphQL */ `
           _version
           _deleted
           _lastChangedAt
+          owner
         }
         documents {
           nextToken
@@ -255,6 +271,7 @@ export const createDocument = /* GraphQL */ `
         _deleted
         _lastChangedAt
         schoolUsersId
+        owner
       }
       name
       filePath
@@ -264,6 +281,7 @@ export const createDocument = /* GraphQL */ `
       _deleted
       _lastChangedAt
       userDocumentsId
+      owner
     }
   }
 `;
@@ -285,6 +303,7 @@ export const updateDocument = /* GraphQL */ `
           _version
           _deleted
           _lastChangedAt
+          owner
         }
         documents {
           nextToken
@@ -296,6 +315,7 @@ export const updateDocument = /* GraphQL */ `
         _deleted
         _lastChangedAt
         schoolUsersId
+        owner
       }
       name
       filePath
@@ -305,6 +325,7 @@ export const updateDocument = /* GraphQL */ `
       _deleted
       _lastChangedAt
       userDocumentsId
+      owner
     }
   }
 `;
@@ -326,6 +347,7 @@ export const deleteDocument = /* GraphQL */ `
           _version
           _deleted
           _lastChangedAt
+          owner
         }
         documents {
           nextToken
@@ -337,6 +359,7 @@ export const deleteDocument = /* GraphQL */ `
         _deleted
         _lastChangedAt
         schoolUsersId
+        owner
       }
       name
       filePath
@@ -346,6 +369,7 @@ export const deleteDocument = /* GraphQL */ `
       _deleted
       _lastChangedAt
       userDocumentsId
+      owner
     }
   }
 `;

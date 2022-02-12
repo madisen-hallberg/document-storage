@@ -7,17 +7,22 @@ import '@fontsource/inter/variable.css';
 import {
   Authenticator,
   withAuthenticator,
-  Button
 } from '@aws-amplify/ui-react';
 import { listSchools } from './graphql/queries';
+import { createSchool } from './graphql/mutations';
 import { Auth } from 'aws-amplify';
+import { Paper, Button, TextField, IconButton } from '@material-ui/core';
+import AddIcon from '@material-ui/icons/Add';
+import CheckCircle from '@material-ui/icons/CheckCircle';
+import { v4 as uuid } from 'uuid';
 
 
 Amplify.configure(awsconfig);
 
 function App() {
 
-  const [schools, setSchools ] = useState([])
+  const [schools, setSchools ] = useState([]);
+  const [ showAddSchool, setShowAddNewSchool ] = useState(false)
 
   useEffect(() => {
     fetchSchools();
@@ -39,9 +44,30 @@ function App() {
       <div className="App">
         <header className="App-header">
           <Authenticator />
-          <h2>App Contents</h2>
-          <Button onClick={signOut}>Sign Out</Button>
+          <Button variant="contained" onClick={signOut}>Sign Out</Button>
+          <h2>Documents</h2>
         </header>
+          <div className = "schoolList">
+            { schools.map(school => {
+              return (
+                <Paper variant ="outlined" elevation={2} square>
+                  <div className="schoolCard">
+                    <div className="schoolName">{school.name}</div>
+                  </div>
+                </Paper>
+              )
+            })}
+            {showAddSchool ? (
+                <AddSchool onUpload={( {}) => {
+                  setShowAddNewSchool(false)
+                  fetchSchools()
+                }}/>
+              ) : (
+                <IconButton onClick={() => setShowAddNewSchool(true)}>
+                  <AddIcon />
+                </IconButton>
+              )}
+          </div>
       </div>
   );
 }
@@ -54,4 +80,41 @@ async function signOut() {
   }
 }
 
+
 export default withAuthenticator( App );
+
+
+const AddSchool = ({onUpload}) => {
+  const [schoolData, setSchoolData] = useState({});
+
+  const uploadSchool = async () => {
+
+    //Upload the School
+    console.log('schoolData', schoolData);
+    const { name } = schoolData;
+    const createSchoolInput ={
+      id: uuid(),
+      // eslint-disable-next-line no-restricted-globals
+      name
+    }
+
+    await API.graphql(graphqlOperation(createSchool, {input: createSchoolInput}));
+    onUpload();
+  };
+
+
+  
+
+  return (
+    <div className = "newSchool">
+      <TextField
+        label="Name"
+        value={schoolData.name}
+        onChange={e => setSchoolData({ ...schoolData, title: e.target.value})}
+      />
+      <IconButton onClick={uploadSchool} >
+        <CheckCircle />
+      </IconButton>
+    </div>
+  )
+}

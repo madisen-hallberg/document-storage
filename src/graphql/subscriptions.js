@@ -2,8 +2,8 @@
 // this is an auto generated file. This will be overwritten
 
 export const onCreateSchool = /* GraphQL */ `
-  subscription OnCreateSchool {
-    onCreateSchool {
+  subscription OnCreateSchool($owner: String) {
+    onCreateSchool(owner: $owner) {
       id
       name
       users {
@@ -16,6 +16,7 @@ export const onCreateSchool = /* GraphQL */ `
           _deleted
           _lastChangedAt
           schoolUsersId
+          owner
         }
         nextToken
         startedAt
@@ -25,12 +26,13 @@ export const onCreateSchool = /* GraphQL */ `
       _version
       _deleted
       _lastChangedAt
+      owner
     }
   }
 `;
 export const onUpdateSchool = /* GraphQL */ `
-  subscription OnUpdateSchool {
-    onUpdateSchool {
+  subscription OnUpdateSchool($owner: String) {
+    onUpdateSchool(owner: $owner) {
       id
       name
       users {
@@ -43,6 +45,7 @@ export const onUpdateSchool = /* GraphQL */ `
           _deleted
           _lastChangedAt
           schoolUsersId
+          owner
         }
         nextToken
         startedAt
@@ -52,12 +55,13 @@ export const onUpdateSchool = /* GraphQL */ `
       _version
       _deleted
       _lastChangedAt
+      owner
     }
   }
 `;
 export const onDeleteSchool = /* GraphQL */ `
-  subscription OnDeleteSchool {
-    onDeleteSchool {
+  subscription OnDeleteSchool($owner: String) {
+    onDeleteSchool(owner: $owner) {
       id
       name
       users {
@@ -70,6 +74,7 @@ export const onDeleteSchool = /* GraphQL */ `
           _deleted
           _lastChangedAt
           schoolUsersId
+          owner
         }
         nextToken
         startedAt
@@ -79,12 +84,13 @@ export const onDeleteSchool = /* GraphQL */ `
       _version
       _deleted
       _lastChangedAt
+      owner
     }
   }
 `;
 export const onCreateUser = /* GraphQL */ `
-  subscription OnCreateUser {
-    onCreateUser {
+  subscription OnCreateUser($owner: String) {
+    onCreateUser(owner: $owner) {
       id
       name
       school {
@@ -99,6 +105,7 @@ export const onCreateUser = /* GraphQL */ `
         _version
         _deleted
         _lastChangedAt
+        owner
       }
       documents {
         items {
@@ -111,6 +118,7 @@ export const onCreateUser = /* GraphQL */ `
           _deleted
           _lastChangedAt
           userDocumentsId
+          owner
         }
         nextToken
         startedAt
@@ -121,12 +129,13 @@ export const onCreateUser = /* GraphQL */ `
       _deleted
       _lastChangedAt
       schoolUsersId
+      owner
     }
   }
 `;
 export const onUpdateUser = /* GraphQL */ `
-  subscription OnUpdateUser {
-    onUpdateUser {
+  subscription OnUpdateUser($owner: String) {
+    onUpdateUser(owner: $owner) {
       id
       name
       school {
@@ -141,6 +150,7 @@ export const onUpdateUser = /* GraphQL */ `
         _version
         _deleted
         _lastChangedAt
+        owner
       }
       documents {
         items {
@@ -153,6 +163,7 @@ export const onUpdateUser = /* GraphQL */ `
           _deleted
           _lastChangedAt
           userDocumentsId
+          owner
         }
         nextToken
         startedAt
@@ -163,12 +174,13 @@ export const onUpdateUser = /* GraphQL */ `
       _deleted
       _lastChangedAt
       schoolUsersId
+      owner
     }
   }
 `;
 export const onDeleteUser = /* GraphQL */ `
-  subscription OnDeleteUser {
-    onDeleteUser {
+  subscription OnDeleteUser($owner: String) {
+    onDeleteUser(owner: $owner) {
       id
       name
       school {
@@ -183,6 +195,7 @@ export const onDeleteUser = /* GraphQL */ `
         _version
         _deleted
         _lastChangedAt
+        owner
       }
       documents {
         items {
@@ -195,6 +208,7 @@ export const onDeleteUser = /* GraphQL */ `
           _deleted
           _lastChangedAt
           userDocumentsId
+          owner
         }
         nextToken
         startedAt
@@ -205,12 +219,13 @@ export const onDeleteUser = /* GraphQL */ `
       _deleted
       _lastChangedAt
       schoolUsersId
+      owner
     }
   }
 `;
 export const onCreateDocument = /* GraphQL */ `
-  subscription OnCreateDocument {
-    onCreateDocument {
+  subscription OnCreateDocument($owner: String) {
+    onCreateDocument(owner: $owner) {
       id
       user {
         id
@@ -223,6 +238,7 @@ export const onCreateDocument = /* GraphQL */ `
           _version
           _deleted
           _lastChangedAt
+          owner
         }
         documents {
           nextToken
@@ -234,6 +250,7 @@ export const onCreateDocument = /* GraphQL */ `
         _deleted
         _lastChangedAt
         schoolUsersId
+        owner
       }
       name
       filePath
@@ -243,12 +260,13 @@ export const onCreateDocument = /* GraphQL */ `
       _deleted
       _lastChangedAt
       userDocumentsId
+      owner
     }
   }
 `;
 export const onUpdateDocument = /* GraphQL */ `
-  subscription OnUpdateDocument {
-    onUpdateDocument {
+  subscription OnUpdateDocument($owner: String) {
+    onUpdateDocument(owner: $owner) {
       id
       user {
         id
@@ -261,6 +279,7 @@ export const onUpdateDocument = /* GraphQL */ `
           _version
           _deleted
           _lastChangedAt
+          owner
         }
         documents {
           nextToken
@@ -272,6 +291,7 @@ export const onUpdateDocument = /* GraphQL */ `
         _deleted
         _lastChangedAt
         schoolUsersId
+        owner
       }
       name
       filePath
@@ -281,12 +301,13 @@ export const onUpdateDocument = /* GraphQL */ `
       _deleted
       _lastChangedAt
       userDocumentsId
+      owner
     }
   }
 `;
 export const onDeleteDocument = /* GraphQL */ `
-  subscription OnDeleteDocument {
-    onDeleteDocument {
+  subscription OnDeleteDocument($owner: String) {
+    onDeleteDocument(owner: $owner) {
       id
       user {
         id
@@ -299,6 +320,7 @@ export const onDeleteDocument = /* GraphQL */ `
           _version
           _deleted
           _lastChangedAt
+          owner
         }
         documents {
           nextToken
@@ -310,6 +332,7 @@ export const onDeleteDocument = /* GraphQL */ `
         _deleted
         _lastChangedAt
         schoolUsersId
+        owner
       }
       name
       filePath
@@ -319,6 +342,7 @@ export const onDeleteDocument = /* GraphQL */ `
       _deleted
       _lastChangedAt
       userDocumentsId
+      owner
     }
   }
 `;
