@@ -1,39 +1,42 @@
 .App {
-  text-align: center;
+    text-align: center;
 }
 
 .App-logo {
-  height: 10vmin;
-  pointer-events: none;
+    height: 10vmin;
+    pointer-events: none;
 }
 
 .App-header {
-  background-color: #282c34;
-  min-height: 5vh;
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: space-around;
-  font-size: calc(10px + 2vmin);
-  color: white;
+    background-color: #282c34;
+    min-height: 5vh;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-around;
+    font-size: calc(10px + 2vmin);
+    color: white;
 }
 
 .App-link {
-  color: #61dafb;
+    color: #61dafb;
 }
 
-.schoolList{
-  display: flex;
-  flex-direction: column;
+.schoolList {
+    display: flex;
+    flex-direction: column;
 }
 
-.schoolCard{
-  display: flex;
-  justify-content: space-around;
-  padding: 10px;
+.schoolCard {
+    display: flex;
+    justify-content: space-around;
+    padding: 10px;
+}
+
+.schoolCard:hover {
+    background-color: rgb(243, 241, 241);
 }
 
 .schoolName {
-  font-weight: bold;
+    font-weight: bold;
 }
-
