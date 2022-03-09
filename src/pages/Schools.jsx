@@ -8,8 +8,9 @@ import { listSchools } from '../graphql/queries';
 import { v4 as uuid } from 'uuid';
 import '@aws-amplify/ui-react/styles.css';
 import '@fontsource/inter/variable.css';
+import { Link } from "react-router-dom";
 
-export default function Schools({}) {
+export default function Schools() {
 
 
     const [ showAddSchool, setShowAddNewSchool ] = useState(false)
@@ -38,15 +39,16 @@ export default function Schools({}) {
         <div className = "schoolList">
         { schools.map(school => {
           return (
-            <Paper key={school.id} variant ="outlined" elevation={2} square>
+            <Paper key={school.id} variant ="outlined" elevation={2} square >
               <div className="schoolCard">
                 <div className="schoolName">{school.name}</div>
+                <Link to="/users" state = {{ school: school }} >Users</Link>
               </div>
             </Paper>
           )
         })}
         {showAddSchool ? (
-            <AddSchool onUpload={( {}) => {
+            <AddSchool onUpload={({}) => {
               setShowAddNewSchool(false)
               fetchSchools()
             }}/>

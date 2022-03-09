@@ -1,6 +1,7 @@
 import './App.css';
 import Home from './pages/Home';
 import Schools from './pages/Schools';
+import Users from './pages/Users';
 import Amplify from 'aws-amplify';
 import awsconfig from './aws-exports';
 import '@aws-amplify/ui-react/styles.css';
@@ -12,6 +13,7 @@ import {
 import { Auth } from 'aws-amplify';
 import { Button } from '@material-ui/core';
 import { Routes, Route, Link } from "react-router-dom";
+import { BrowserRouter } from "react-router-dom";
 
 
 Amplify.configure(awsconfig);
@@ -19,6 +21,7 @@ Amplify.configure(awsconfig);
 function App() {
 
   return (
+    <BrowserRouter>
       <div className="App">
         <header className="App-header">
           <Authenticator />
@@ -36,8 +39,10 @@ function App() {
         <Routes>
           <Route path="/home" element={<Home />} />
           <Route path="/schools" element={<Schools />} />
+          <Route path="/users" element={<Users />} />
         </Routes>
       </div>
+    </BrowserRouter>
   );
 }
 
