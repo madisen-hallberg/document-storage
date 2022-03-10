@@ -36,19 +36,23 @@ export default function Schools() {
 
 
     return (
-        <div className = "schoolList">
+        <div className = "list">
         { schools.map(school => {
           return (
             <Paper key={school.id} variant ="outlined" elevation={2} square >
-              <div className="schoolCard">
-                <div className="schoolName">{school.name}</div>
-                <Link to="/users" state = {{ school: school }} >Users</Link>
-              </div>
+                <div className="card">
+                    <div className="col">
+                        <div className="name">{school.name}</div>
+                    </div>
+                    <Link to="/students"  style={{ textDecoration: 'none' }} state = {{ school: school }} >
+                        <Button>Students</Button>
+                    </Link>
+                </div>
             </Paper>
           )
         })}
         {showAddSchool ? (
-            <AddSchool onUpload={({}) => {
+            <AddSchool onUpload={() => {
               setShowAddNewSchool(false)
               fetchSchools()
             }}/>
@@ -82,7 +86,7 @@ export default function Schools() {
     
   
     return (
-      <div className = "newSchool">
+      <div className = "new">
         <TextField
           label="Name"
           value={schoolData.name}

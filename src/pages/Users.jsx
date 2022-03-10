@@ -17,7 +17,7 @@ export default function Users( ) {
   const { school } = location.state
 
   const [ showAddUser, setShowAddNewUser ] = useState(false)
-  const [users, setUsers ] = useState([]);
+  const [ users, setUsers ] = useState([]);
 
   useEffect(() => {
     fetchUsers();
@@ -40,21 +40,24 @@ export default function Users( ) {
       setUsers(userList)
 
       } catch (error) {
-      console.log('error on fetching schools', error);
+      console.log('error on fetching users', error);
       }
   }
 
 
 
   return (
-      <div className = "userList">
+      <div className = "list">
       <h1>{ school.name }</h1>
+      <h2> Students </h2>
       { users.map(user => {
         return (
           <Paper key={user.id} variant ="outlined" elevation={2} square >
-            <div className="userCard">
-              <div className="userName">{user.name}</div>
-              <Link to="/documents" users = {user.documents} >Users</Link>
+            <div className="card">
+              <div className="name">{user.name}</div>
+              <Link to="/documents" style={{ textDecoration: 'none' }} state = {{ user: user }} >
+                <Button>Documents</Button>
+              </Link>
             </div>
           </Paper>
         )
@@ -62,7 +65,7 @@ export default function Users( ) {
       {showAddUser ? (
           <AddUser
             school = { school }
-            onUpload={({}) => {
+            onUpload={() => {
               setShowAddNewUser(false)
               fetchUsers()
             }}
@@ -97,7 +100,7 @@ const AddUser = ({onUpload, school}) => {
   };
 
   return (
-    <div className = "newUser">
+    <div className = "new">
       <TextField
         label="Name"
         value={userData.name}

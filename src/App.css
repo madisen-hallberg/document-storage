@@ -18,25 +18,81 @@
     color: white;
 }
 
+.row {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 40px 10px 20px;
+    width: 100%;
+}
+
 .App-link {
     color: #61dafb;
 }
 
-.schoolList {
-    display: flex;
+.list {
     flex-direction: column;
+    justify-content: left;
 }
 
-.schoolCard {
+div.card {
+    flex-direction: row;
+    border: none;
+    justify-content: space-between;
+    padding: 10px 40px 10px 20px;
+}
+
+.card {
     display: flex;
-    justify-content: space-around;
-    padding: 10px;
+    justify-content: space-between;
+    padding: 10px 40px 10px 20px;
 }
 
-.schoolCard:hover {
+.card:hover {
     background-color: rgb(243, 241, 241);
 }
 
-.schoolName {
+.new {
+    margin-top: 10px;
+}
+
+.name {
     font-weight: bold;
+    padding: 6px 16px;
+    margin: 3px;
+    text-align: left;
+}
+
+
+/*stroke*/
+
+.stroke a:after,
+nav a:before {
+    transition: all .5s;
+}
+
+.stroke a:hover {
+    color: rgb(125, 6, 172)!important;
+}
+
+.stroke a {
+    position: relative;
+}
+
+.stroke a:after {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+    width: 0%;
+    content: '.';
+    color: transparent;
+    background: #aaa;
+    height: 1px;
+}
+
+.stroke a:hover:after {
+    width: 100%;
 }
