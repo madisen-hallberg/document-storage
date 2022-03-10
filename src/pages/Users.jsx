@@ -1,8 +1,9 @@
 import { Link, useLocation } from "react-router-dom";
 import { Paper, Button, TextField, IconButton } from '@material-ui/core';
 import AddIcon from '@material-ui/icons/Add';
+import DeleteIcon from '@material-ui/icons/Delete';
 import { useState, useEffect } from 'react';
-import { createUser } from '../graphql/mutations';
+import { createUser, deleteUser } from '../graphql/mutations';
 import CheckCircle from '@material-ui/icons/CheckCircle';
 import { API, graphqlOperation } from 'aws-amplify';
 import { listUsers } from '../graphql/queries';
@@ -51,16 +52,26 @@ export default function Users( ) {
       <h1>{ school.name }</h1>
       <h2> Students </h2>
       { users.map(user => {
-        return (
-          <Paper key={user.id} variant ="outlined" elevation={2} square >
-            <div className="card">
-              <div className="name">{user.name}</div>
-              <Link to="/documents" style={{ textDecoration: 'none' }} state = {{ user: user }} >
-                <Button>Documents</Button>
-              </Link>
-            </div>
-          </Paper>
-        )
+        if(!user._deleted){
+          return (
+            <Paper key={user.id} variant ="outlined" elevation={2} square >
+              <div className="card">
+                <div className="name">{user.name}</div>
+                <div className="buttonGroup">
+                  <Link to="/documents" style={{ textDecoration: 'none' }} state = {{ user: user }} >        
+                    <Button>Documents</Button>
+                  </Link>
+                  <RemoveUser
+                    user = { user }
+                    onDelete={() => {
+                        fetchUsers()
+                    }}
+                  />
+                </div>
+              </div>
+            </Paper>
+          )
+        }else return null;
       })}
       {showAddUser ? (
           <AddUser
@@ -110,5 +121,26 @@ const AddUser = ({onUpload, school}) => {
         <CheckCircle />
       </IconButton>
     </div>
+  )
+}
+
+const RemoveUser = ({ onDelete, user }) => {
+  
+  const removeUser = async () => {
+
+    //Delete the User    
+    const deleteUserInput ={
+      id: user.id,
+      _version: user._version
+    }
+
+    await API.graphql(graphqlOperation(deleteUser, {input: deleteUserInput}));
+    onDelete();
+  };
+
+  return(
+      <IconButton  onClick = { removeUser }>
+          <DeleteIcon />
+      </IconButton>
   )
 }

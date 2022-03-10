@@ -1,7 +1,8 @@
 import { Paper, Button, TextField, IconButton } from '@material-ui/core';
 import AddIcon from '@material-ui/icons/Add';
+import DeleteIcon from '@material-ui/icons/Delete';
 import { useState, useEffect } from 'react';
-import { createSchool } from '../graphql/mutations';
+import { createSchool, deleteSchool } from '../graphql/mutations';
 import CheckCircle from '@material-ui/icons/CheckCircle';
 import { API, graphqlOperation } from 'aws-amplify';
 import { listSchools } from '../graphql/queries';
@@ -37,19 +38,28 @@ export default function Schools() {
 
     return (
         <div className = "list">
+            <h2>Programs</h2>
         { schools.map(school => {
-          return (
-            <Paper key={school.id} variant ="outlined" elevation={2} square >
-                <div className="card">
-                    <div className="col">
-                        <div className="name">{school.name}</div>
-                    </div>
-                    <Link to="/students"  style={{ textDecoration: 'none' }} state = {{ school: school }} >
-                        <Button>Students</Button>
-                    </Link>
-                </div>
-            </Paper>
-          )
+            if(!school._deleted){
+                return (
+                    <Paper key={school.id} variant ="outlined" elevation={2} square >
+                        <div className="card">
+                            <div className="name">{school.name}</div>
+                            <div className="buttonGroup">
+                                <Link to="/students"  style={{ textDecoration: 'none' }} state = {{ school: school }} >
+                                    <Button>Students</Button>
+                                </Link>
+                                <RemoveSchool
+                                    school = { school }
+                                    onDelete={() => {
+                                        fetchSchools()
+                                    }}
+                                />
+                            </div>
+                        </div>
+                    </Paper>
+                )
+            } else return null;  
         })}
         {showAddSchool ? (
             <AddSchool onUpload={() => {
@@ -96,5 +106,26 @@ export default function Schools() {
           <CheckCircle />
         </IconButton>
       </div>
+    )
+  }
+
+  const RemoveSchool = ({ onDelete, school }) => {
+  
+    const removeSchool = async () => {
+  
+      //Delete the User    
+      const deleteSchoolInput ={
+        id: school.id,
+        _version: school._version
+      }
+  
+      await API.graphql(graphqlOperation(deleteSchool, {input: deleteSchoolInput}));
+      onDelete();
+    };
+  
+    return(
+        <IconButton  onClick = { removeSchool }>
+            <DeleteIcon />
+        </IconButton>
     )
   }

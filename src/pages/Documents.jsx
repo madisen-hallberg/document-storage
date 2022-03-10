@@ -94,14 +94,14 @@ export default function Documents( ) {
                   <div className="card">
                       <div className="name" >{doc.name}</div>
                       <div className="buttonGroup">
-                          <Button onClick={() => viewDoc(idx)}>View</Button>
-                          <RemoveDoc
-                              doc = { doc }
-                              onDelete={() => {
-                                  deleteDoc(idx)
-                                  fetchDocs()
-                              }}
-                          />
+                        <Button onClick={() => viewDoc(idx)}>View</Button>
+                        <RemoveDoc
+                            doc = { doc }
+                            onDelete={() => {
+                                deleteDoc(idx)
+                                fetchDocs()
+                            }}
+                        />
                       </div>
                   </div>
                 </Paper>
