@@ -14,6 +14,8 @@ import '@fontsource/inter/variable.css';
   
 export default function Documents( ) {
 
+    
+
   const location = useLocation();
   const { user } = location.state
 
@@ -97,6 +99,7 @@ export default function Documents( ) {
                               doc = { doc }
                               onDelete={() => {
                                   deleteDoc(idx)
+                                  fetchDocs()
                               }}
                           />
                       </div>
@@ -182,7 +185,7 @@ const RemoveDoc = ({ onDelete, doc }) => {
     };
   
     return(
-        <IconButton onClick = { removeDoc }>
+        <IconButton  onClick = { removeDoc }>
             <DeleteIcon />
         </IconButton>
     )
