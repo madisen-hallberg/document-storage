@@ -1,11 +1,12 @@
 import { Link, useLocation } from "react-router-dom";
 import { Paper, Button, TextField, IconButton } from '@material-ui/core';
 import AddIcon from '@material-ui/icons/Add';
+import DeleteIcon from '@material-ui/icons/Delete';
 import { useState, useEffect } from 'react';
 import PublishIcon from '@material-ui/icons/Publish';
 import { API, graphqlOperation, Storage } from 'aws-amplify';
 import { listDocuments } from '../graphql/queries';
-import { createDocument } from '../graphql/mutations';
+import { createDocument, deleteDocument } from '../graphql/mutations';
 import { v4 as uuid } from 'uuid';
 import '@aws-amplify/ui-react/styles.css';
 import '@fontsource/inter/variable.css';
@@ -44,6 +45,20 @@ export default function Documents( ) {
       setDocViewing(idx);
   }
 
+  const deleteDoc = async idx => {
+
+    const docFilePath = docs[idx].filePath;
+    console.log(docFilePath);
+    try {
+        await Storage.remove( docFilePath )
+        console.log("Document Deleted");
+        return
+    } catch (error) {
+        console.log("error: "+ error);
+    }
+}
+
+
   const fetchDocs = async () => {
       try {
 
@@ -71,15 +86,25 @@ export default function Documents( ) {
       <div className = "list">
       <h1>{ user.name }'s Documents</h1>
       { docs.map((doc, idx) => {
-        return (
-          <Paper key={idx} variant ="outlined" elevation={2} square >
-            <div className="card">
-                <div className="name" >{doc.name}</div>
-                <Button onClick={() => viewDoc(idx)}>View
-                </Button>
-            </div>
-          </Paper>
-        )
+          if(!doc._deleted) {
+            return (
+                <Paper key={idx} variant ="outlined" elevation={2} square >
+                  <div className="card">
+                      <div className="name" >{doc.name}</div>
+                      <div className="buttonGroup">
+                          <Button onClick={() => viewDoc(idx)}>View</Button>
+                          <RemoveDoc
+                              doc = { doc }
+                              onDelete={() => {
+                                  deleteDoc(idx)
+                              }}
+                          />
+                      </div>
+                  </div>
+                </Paper>
+              )
+          }
+          else return null;
       })}
       {showAddDoc ? (
           <AddDoc
@@ -140,3 +165,25 @@ const AddDoc = ({onUpload, user}) => {
   )
 }
 
+const RemoveDoc = ({ onDelete, doc }) => {
+  
+    const removeDoc = async () => {
+  
+      //Delete the Document
+  
+      
+      const deleteDocumentInput ={
+        id: doc.id,
+        _version: doc._version
+      }
+  
+      await API.graphql(graphqlOperation(deleteDocument, {input: deleteDocumentInput}));
+      onDelete();
+    };
+  
+    return(
+        <IconButton onClick = { removeDoc }>
+            <DeleteIcon />
+        </IconButton>
+    )
+}
